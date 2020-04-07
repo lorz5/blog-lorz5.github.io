@@ -4,13 +4,38 @@
   
     
     <entry>
+      <title>常用doc命令</title>
+      <link href="/2020/04/07/%E5%B8%B8%E7%94%A8doc%E5%91%BD%E4%BB%A4/"/>
+      <url>/2020/04/07/%E5%B8%B8%E7%94%A8doc%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常用的doc命令"><a href="#常用的doc命令" class="headerlink" title="常用的doc命令"></a>常用的doc命令</h1><p><code>dir</code>：列出当前目录下的文件以及文件夹</p><p><code>md</code>：创建一个文件夹</p><p><code>rd</code>：删除一个文件夹</p><p><code>cd</code>：进入指定目录</p><p><code>cd..</code>：返回上一级目录</p><p><code>cd\</code>：退回到根目录</p><p><code>del</code>：删除文件</p><p><code>exit</code>：退出doc命令行</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> doc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>开始学习MySQL</title>
       <link href="/2020/04/03/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0MySQL/"/>
       <url>/2020/04/03/%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0MySQL/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="一、从安装开始"><a href="#一、从安装开始" class="headerlink" title="一、从安装开始"></a>一、从安装开始</h2><blockquote><p>安装地址：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a> </p></blockquote><p>1、挑选合适的版本安装（建议以压缩包的形式）</p><p><img src=".._data%5Cblog_imgs%5CMySQL_installer01.jpg" alt="" loading="lazy"></p><p>2、建议放在电脑的环境配置下</p><p><img src=".._data%5Cblog_imgs%5CMySQL_installer02.png" alt="" loading="lazy"></p><p>3、配置环境变量</p><p><code>我的电脑 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; Path路径 -&gt; 编辑，添加bin目录</code></p><p><img src=".._data%5Cblog_imgs%5CMySQL_installer03.jpg" alt="" loading="lazy"></p><p>4、新建mysql配置文件</p><p><img src=".._data%5Cblog_imgs%5CMySQL_installer04.png" alt="" loading="lazy"></p><pre class=" language-ini"><code class="language-ini"><span class="token selector">[mysqld]</span><span class="token constant">basedir</span><span class="token attr-value"><span class="token punctuation">=</span>D:\Environment\mysql-8.0.19\</span><span class="token constant">datadir</span><span class="token attr-value"><span class="token punctuation">=</span>D:\Environment\mysql-8.0.19\data\</span><span class="token constant">port</span><span class="token attr-value"><span class="token punctuation">=</span>3306    #端口</span>skip-grant-tables    #跳过密码验证</code></pre><p>5、启动管理员模式下的CMD，切换到mysql下的bin目录，输入mysqld -install （安装mysql）</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
       
     </entry>
     
