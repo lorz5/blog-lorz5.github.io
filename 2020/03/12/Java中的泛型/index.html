@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Java中的泛型"><meta name="keywords" content="JavaSe"><meta name="author" content="lorz5"><meta name="copyright" content="lorz5"><meta name="theme-color" content="#585858"><title>Java中的泛型 | lorz5の小さい家</title><link rel="shortcut icon" href="/yun-favicon.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    let Yun = window.Yun || {};
+    let CONFIG = {"root":"/","title":"お帰りなさい","version":"0.3.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><script src="//at.alicdn.com/t/font_1140697_pa6cswvjpq.js" async></script><meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc sidebar-nav-active hty-icon-button" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="lorz5"><img loading="lazy" src="/images/avatar03.png" alt="lorz5"></a><div class="site-author-name"><a href="/about">lorz5</a></div><a class="site-name" href="/about/site.html">lorz5の小さい家</a><sub class="site-subtitle">Personal Website</sub><div class="site-desciption">ー頑張ろうねー</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><a class="site-state-item hty-icon-button" href="https://github.com/YunYouJun/yunyoujun.github.io/issues/96" target="_blank" rel="noopener" title="reward.comment"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:1019438677@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/13772988" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/m/user/home?id=105243680" title="网易云音乐" target="_blank" style="color:#C10D0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/lorz5" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div></div><script defer src="/js/sidebar.js"></script><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-progress"><div class="progress-bar"></div><div class="progress-info"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span></div></div><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java中的泛型"><span class="toc-number">1.</span> <span class="toc-text">Java中的泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、使用泛型与不使用泛型的集合的区别"><span class="toc-number">1.1.</span> <span class="toc-text">一、使用泛型与不使用泛型的集合的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、不使用泛型的集合"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、不使用泛型的集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、使用泛型的集合"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、使用泛型的集合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、泛型的定义跟使用"><span class="toc-number">1.2.</span> <span class="toc-text">二、泛型的定义跟使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、定义和使用带有泛型的类"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、定义和使用带有泛型的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、定义和使用带有泛型的方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、定义和使用带有泛型的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、定义和使用带有泛型的接口"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、定义和使用带有泛型的接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、泛型通配符"><span class="toc-number">1.3.</span> <span class="toc-text">三、泛型通配符</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://lorz5.github.io/2020/03/12/Java%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="lorz5"><meta itemprop="description" content="Java中的泛型"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="lorz5の小さい家"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Java中的泛型</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2020-03-12 20:28:55" itemprop="dateCreated datePublished" datetime="2020-03-12T20:28:55+08:00">2020-03-12</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="Modified: 2020-04-09 17:20:52" itemprop="dateModified" datetime="2020-04-09T17:20:52+08:00">2020-04-09</time></span><div class="post-classify"><span class="post-tag"></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><h1 id="Java中的泛型"><a href="#Java中的泛型" class="headerlink" title="Java中的泛型"></a>Java中的泛型</h1><p>泛型是一种参数化类型的机制。它可以使得代码适用于各种类型，从而编写更加通用的代码，例如集合框架。</p>
+<p>泛型是一种编译时类型确认机制。它提供了编译期的<strong>类型安全</strong>，确保在泛型类型（通常为泛型集合）上只能使用正确类型的对象，避免了在运行时出现ClassCastException（类型转换错误异常）</p>
+<p>泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数</p>
+<h2 id="一、使用泛型与不使用泛型的集合的区别"><a href="#一、使用泛型与不使用泛型的集合的区别" class="headerlink" title="一、使用泛型与不使用泛型的集合的区别"></a>一、使用泛型与不使用泛型的集合的区别</h2><h3 id="1、不使用泛型的集合"><a href="#1、不使用泛型的集合" class="headerlink" title="1、不使用泛型的集合"></a>1、不使用泛型的集合</h3><p>优点：集合不使用泛型，默认是Object类型，可以存储任何类型的元素</p>
+<p>缺点：不安全，会引发异常</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">leeCode</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ArrayList e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 可以往集合里添加任意类型的元素</span>
+        e<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"字符串"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        e<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 因为无法确定集合里的对象类型，所以使用每个对象独有的方法</span>
+        <span class="token comment" spellcheck="true">// 会抛出异常</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Object k <span class="token operator">:</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            String s <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span>k<span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="2、使用泛型的集合"><a href="#2、使用泛型的集合" class="headerlink" title="2、使用泛型的集合"></a>2、使用泛型的集合</h3><p>优点：避免了类型转换的麻烦，存取元素类型一致</p>
+<p>缺点：指定了什么类型，就只能是什么类型，无法存入其他元素</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">leeCode</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 使用泛型指定了集合存储的类型为String</span>
+        ArrayList<span class="token operator">&lt;</span>String<span class="token operator">></span> e <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        e<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"字符串1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// e.add(1);    error：只能存储字符串</span>
+        e<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"字符串2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>String k <span class="token operator">:</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>k<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<hr>
+<h2 id="二、泛型的定义跟使用"><a href="#二、泛型的定义跟使用" class="headerlink" title="二、泛型的定义跟使用"></a>二、泛型的定义跟使用</h2><p>作用：简单来说就是使一个类或者方法具有兼容性，可以根据我们需要的数据类型对某一种数据类型进行操作</p>
+<h3 id="1、定义和使用带有泛型的类"><a href="#1、定义和使用带有泛型的类" class="headerlink" title="1、定义和使用带有泛型的类"></a>1、定义和使用带有泛型的类</h3><p>格式：</p>
+<blockquote>
+<p>修饰符 class 类名&lt;泛型变量&gt; {    }</p>
+</blockquote>
+<p>Ex：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+    API中的ArrayList集合
+*/</span>
+<span class="token comment" spellcheck="true">// E 代表一个未知的数据类型</span>
+<span class="token keyword">class</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 方法体</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> E <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 方法体</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>什么时候确定泛型？</li>
+</ul>
+<blockquote>
+<p>创建对象的时候确认泛型的类型</p>
+</blockquote>
+<h3 id="2、定义和使用带有泛型的方法"><a href="#2、定义和使用带有泛型的方法" class="headerlink" title="2、定义和使用带有泛型的方法"></a>2、定义和使用带有泛型的方法</h3><p>格式：</p>
+<blockquote>
+<p>修饰符 &lt;泛型变量&gt; 返回值类型 方法名称 (参数){    }</p>
+</blockquote>
+<p>Ex:</p>
+<pre class=" language-JAVA"><code class="language-JAVA">public class GenericMethodTest
+{
+   // 泛型方法 printArray 
+   // 一个方法实现对多种数据类型的数据输出的功能，具备了一定的兼容性
+   public static < E > void printArray( E[] inputArray )
+   {
+      // 输出数组元素            
+         for ( E element : inputArray ){        
+            System.out.printf( "%s ", element );
+         }
+         System.out.println();
+    }
+
+    public static void main( String args[] )
+    {
+        // 创建不同类型数组： Integer, Double 和 Character
+        Integer[] intArray = { 1, 2, 3, 4, 5 };
+        Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4 };
+        Character[] charArray = { 'H', 'E', 'L', 'L', 'O' };
+
+        System.out.println( "整型数组元素为:" );
+        printArray( intArray  ); // 传递一个整型数组
+
+        System.out.println( "\n双精度型数组元素为:" );
+        printArray( doubleArray ); // 传递一个双精度型数组
+
+        System.out.println( "\n字符型数组元素为:" );
+        printArray( charArray ); // 传递一个字符型数组
+    } 
+}
+</code></pre>
+<ul>
+<li>什么时候确定泛型？</li>
+</ul>
+<p>调用方法的时候确认泛型的类型</p>
+<h3 id="3、定义和使用带有泛型的接口"><a href="#3、定义和使用带有泛型的接口" class="headerlink" title="3、定义和使用带有泛型的接口"></a>3、定义和使用带有泛型的接口</h3><blockquote>
+<p><a href="https://blog.csdn.net/Architect_chaser/article/details/101627284" target="_blank" rel="noopener">定义和使用含有泛型的类、接口、泛型通配符————————墨白</a></p>
+</blockquote>
+<p>因为（继承）实现接口的时候对于泛型有两种情况，所以单独拿出来讨论。</p>
+<p>当接口定义了泛型的时候，可以<br>     1.实现（继承）时，保留接口（父类）的,这样相当于实现类（子类）也使用了泛型，在创建对象的时候确定泛型的数据类型。<br>     2.实现（继承）时，直接把接口（父类）的写成想要实现的数据类型。</p>
+<p>1、接口使用泛型</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MyInterFace</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> E <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> E <span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> E <span class="token function">func3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>2、实现时指定<E>是什么数据类型</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyImple</span> <span class="token keyword">implements</span> <span class="token class-name">MyInterFace</span><span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> String <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> String <span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> String <span class="token function">func3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>或者实现类依旧带泛型</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyImple</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">MyInterFace</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span>  E <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span>  E <span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span>  E <span class="token function">func3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<hr>
+<h2 id="三、泛型通配符"><a href="#三、泛型通配符" class="headerlink" title="三、泛型通配符"></a>三、泛型通配符</h2><ul>
+<li>类型通配符一般是使用 <strong><em>?</em> *<em>代替具体的类型参数。例如 *</em>List</strong> 在逻辑上是<strong>List<String></strong>，List<Integer>** 等所有List&lt;具体类型实参&gt;的父类。</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GenericTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> name <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> age <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Number<span class="token operator">></span> number <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        name<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"icon"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        age<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        number<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">314</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">getData</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getData</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getData</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token punctuation">}</span>
+   <span class="token comment" spellcheck="true">// 因为getData()方法的参数是List类型的，所以name，age，number都可以作为这个方法的实参，这就是通配符的作用 </span>
+   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">getData</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"data :"</span> <span class="token operator">+</span> data<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>类型通配符上限通过形如List来定义，如此定义就是通配符泛型值接受Number及其下层子类类型。  </li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GenericTest</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> name <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> age <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>Number<span class="token operator">></span> number <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Number<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        name<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"icon"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        age<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        number<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">314</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 1报错，因为getUperNumber()方法中的参数已经限定了参数泛型上限为Number，所以泛型为String是不在这个范围之内，所以会报错 </span>
+        <span class="token comment" spellcheck="true">//getUperNumber(name);//1</span>
+        <span class="token function">getUperNumber</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//2</span>
+        <span class="token function">getUperNumber</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//3</span>
+
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">getData</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"data :"</span> <span class="token operator">+</span> data<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">getUperNumber</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Number</span><span class="token operator">></span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"data :"</span> <span class="token operator">+</span> data<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>类型通配符下限通过形如 <strong>List</strong>来定义，表示类型只能接受Number及其三层父类类型，如 Object 类型的实例。</li>
+</ul>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>lorz5</li><li class="post-copyright-link"><strong>Post link: </strong><a href="https://lorz5.github.io/2020/03/12/Java%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B/" title="Java中的泛型">https://lorz5.github.io/2020/03/12/Java%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> unless stating additionally.</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/04/01/23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="prev" title="23种设计模式之单例模式"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">23种设计模式之单例模式</span></a></div><div class="post-nav-item"></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+Java中的泛型" target="_blank" rel="noopener">GitHub Issues</a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> lorz5</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v4.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.3.1</span></div><div id="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-user-line"></use></svg></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg></span><span id="busuanzi_value_site_pv"></span></span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body></html>
