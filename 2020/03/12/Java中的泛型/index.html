@@ -119,7 +119,7 @@
     <span class="token keyword">public</span> <span class="token keyword">abstract</span> E <span class="token function">func2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token keyword">abstract</span> E <span class="token function">func3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>2、实现时指定<E>是什么数据类型</p>
+<p>2、实现时指定<E>是什么数据类型</E></p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyImple</span> <span class="token keyword">implements</span> <span class="token class-name">MyInterFace</span><span class="token operator">&lt;</span>String<span class="token operator">></span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> String <span class="token function">func1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"fun1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -148,7 +148,7 @@
 <span class="token punctuation">}</span></code></pre>
 <hr>
 <h2 id="三、泛型通配符"><a href="#三、泛型通配符" class="headerlink" title="三、泛型通配符"></a>三、泛型通配符</h2><ul>
-<li>类型通配符一般是使用 <strong><em>?</em> *<em>代替具体的类型参数。例如 *</em>List</strong> 在逻辑上是<strong>List<String></strong>，List<Integer>** 等所有List&lt;具体类型实参&gt;的父类。</li>
+<li>类型通配符一般是使用 <strong><em>?</em> *<em>代替具体的类型参数。例如 *</em>List</strong> 在逻辑上是<strong>List<String></String></strong>，List<Integer>** 等所有List&lt;具体类型实参&gt;的父类。</Integer></li>
 </ul>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
 
