@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>C++的对象指针</title>
+      <link href="/2020/04/09/C++%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88/"/>
+      <url>/2020/04/09/C++%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C-中的的对象指针"><a href="#C-中的的对象指针" class="headerlink" title="C++中的的对象指针"></a>C++中的的对象指针</h1><p><code>指针...懂得都懂</code></p><p><img src=".._data%5Cblog_imgs%5C%E8%B7%B3%E8%88%9E.gif" alt="" loading="lazy"></p><h2 id="一、指向对象的指针"><a href="#一、指向对象的指针" class="headerlink" title="一、指向对象的指针"></a>一、指向对象的指针</h2><pre class=" language-c++"><code class="language-c++"># include <iostream>using namespace std;class A {public:    A(){}};int main() {    // name 即为一个对象指针，此时指向一个类型为A的对象    A * name = new A;    return 0;}</code></pre><hr><h2 id="二、指向对象成员的指针"><a href="#二、指向对象成员的指针" class="headerlink" title="二、指向对象成员的指针"></a>二、指向对象成员的指针</h2><p>对象由成员构成，一整个对象的<strong>总内存</strong>为<strong>各个数据成员占据的内存区</strong>的<strong>总和</strong>。</p><p>那么对象的成员也有地址，指向对象成员地址的指针变量即为指向对象成员的指针</p><h3 id="1、指向对象公有数据成员"><a href="#1、指向对象公有数据成员" class="headerlink" title="1、指向对象公有数据成员"></a>1、指向对象公有数据成员</h3><pre class=" language-c++"><code class="language-c++"># include <iostream>using namespace std;class A {public:    int num;    A(){        num = 1;    }};int main() {    A aa;    int * p = &aa.num;        // 指针变量p指向aa这个对象的成员数据num    return 0;}</code></pre><h3 id="2、指向对象成员函数"><a href="#2、指向对象成员函数" class="headerlink" title="2、指向对象成员函数"></a>2、指向对象成员函数</h3><blockquote><p>先复习一下普通情况下一个指向函数的指针是什么样子的</p><blockquote><p><strong>数据类型名 （*指针变量名)(参数列表）；</strong></p></blockquote><p><strong>例如： void (*p)( ); //p指向void型函数的指针变量；</strong></p><p>​             <strong>p = fun;    //fun入口地址赋予p；</strong></p><p>​             <strong>(*p)( );    //调用fun函数；</strong></p></blockquote><pre class=" language-c++"><code class="language-c++"># include <iostream># include <string>using namespace std;void make(string str) {    cout << str << endl;}int main() {    void (*p) (string) = make;    (*p)("你好");    return 0;}/*    输出结果：    > 你好*/</code></pre><hr><p><strong><em>——正题来了——</em></strong></p><blockquote><p> 指向对象成员函数的指针的步骤</p></blockquote><p>①定义指向成员函数的指针变量</p><blockquote><p>数据类型 (类名::*指针变量名)(形参表);</p><ul><li>数据类型 —— 成员函数的类型</li><li>类名 —— 这个对象所属的类</li><li>形参表 —— 与指向成员函数的形参表一致</li></ul></blockquote><p>②取成员函数的地址</p><blockquote><p>&amp;类名::成员函数名</p></blockquote><p><code>实例↓</code></p><pre class=" language-c++"><code class="language-c++"># include <iostream># include <string>using namespace std;class A {public:    int num;    A(){        num = 1;    }    void eat(string a) {        cout << "eat something" << endl;    }    void eat() {        cout << "eat nothing" << endl;    }};int main() {    A aa;    // 1、定义指针    void (A::*p)( );            // 2、指向成员函数    p = &A::eat;    // 3、调用这个指针指向的成员函数    (aa.*p)( );    // 1、定义指针    void (A::*q)(string);    // 2、指向成员函数    q = &A::eat;    // 3、调用这个指针指向的成员函数    (aa.*q)("hello world");    return 0;}/*    输出结果：    > eat nothing    > eat something*/</code></pre><h3 id="3、this指针"><a href="#3、this指针" class="headerlink" title="3、this指针"></a>3、this指针</h3><p>说明：</p><blockquote><p>C++是通过this指针实现不同对象使用同一个函数代码段分别对不同对象数据进行操作的，当调用对象时，this指针指向该对象，成员函数便访问其成员。</p><p>对象所占的空间大小<strong>只取决于该对象中数据成员所占的空间，而与成员函数无关</strong>。不论成员函数是否在类内定义，亦或是否声明为inline，成员函数均不占用对象的存储空间。</p></blockquote><p>那么当不同对象的成员函数访问数据成员时，怎么保证访问的就是当前这个对象的数据成员呢？</p><p>其实每个成员函数中都包含一个特殊的指针<code>this</code>，这个指针指向本对象</p><p><strong>C++</strong> 通过编译程序，在对象调用成员函数时，把对象的地址赋予<code>this</code>指针，用<code>this</code>指针指向对象，<strong><em>实现了用同一个成员函数访问不同对象的数据成员</em></strong>。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> c++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C++中的内存区域</title>
       <link href="/2020/04/09/C++%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/"/>
       <url>/2020/04/09/C++%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</url>
@@ -14,7 +33,7 @@
       
         <tags>
             
-            <tag> C++ </tag>
+            <tag> c++ </tag>
             
             <tag> 底层 </tag>
             
