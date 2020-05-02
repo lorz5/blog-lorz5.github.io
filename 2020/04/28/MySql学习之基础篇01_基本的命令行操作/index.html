@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="MySql学习之基础篇01"><meta name="keywords" content="mysql,基础"><meta name="author" content="lorz5"><meta name="copyright" content="lorz5"><meta name="theme-color" content="#585858"><title>MySql学习之基础篇01 | lorz5の小さい家</title><link rel="shortcut icon" href="/yun-favicon.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    let Yun = window.Yun || {};
+    let CONFIG = {"root":"/","title":"お帰りなさい","version":"0.3.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><script src="//at.alicdn.com/t/font_1140697_pa6cswvjpq.js" async></script><meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc sidebar-nav-active hty-icon-button" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="lorz5"><img loading="lazy" src="/images/avatar03.png" alt="lorz5"></a><div class="site-author-name"><a href="/about">lorz5</a></div><a class="site-name" href="/about/site.html">lorz5の小さい家</a><sub class="site-subtitle">Personal Website</sub><div class="site-desciption">ー頑張ろうねー</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">9</span></a></div><a class="site-state-item hty-icon-button" href="https://github.com/YunYouJun/yunyoujun.github.io/issues/96" target="_blank" rel="noopener" title="reward.comment"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:1019438677@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/13772988" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/m/user/home?id=105243680" title="网易云音乐" target="_blank" style="color:#C10D0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/lorz5" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div></div><script defer src="/js/sidebar.js"></script><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-progress"><div class="progress-bar"></div><div class="progress-info"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span></div></div><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库操作"><span class="toc-number">1.</span> <span class="toc-text">数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、数据库查询语句分类"><span class="toc-number">1.1.</span> <span class="toc-text">一、数据库查询语句分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、基本的命令行操作"><span class="toc-number">1.2.</span> <span class="toc-text">二、基本的命令行操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、创建数据库"><span class="toc-number">1.3.</span> <span class="toc-text">三、创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、操作数据库"><span class="toc-number">1.4.</span> <span class="toc-text">四、操作数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、sql中的数据值"><span class="toc-number">1.4.1.</span> <span class="toc-text">1、sql中的数据值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、数据字段属性"><span class="toc-number">1.4.2.</span> <span class="toc-text">2、数据字段属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、数据表的类型"><span class="toc-number">1.4.3.</span> <span class="toc-text">五、数据表的类型</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://lorz5.github.io/2020/04/28/MySql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%8701_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="lorz5"><meta itemprop="description" content="MySql学习之基础篇01"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="lorz5の小さい家"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">MySql学习之基础篇01</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2020-04-28 16:11:45" itemprop="dateCreated datePublished" datetime="2020-04-28T16:11:45+08:00">2020-04-28</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="Modified: 2020-04-30 01:48:59" itemprop="dateModified" datetime="2020-04-30T01:48:59+08:00">2020-04-30</time></span><div class="post-classify"><span class="post-tag"></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h1><h2 id="一、数据库查询语句分类"><a href="#一、数据库查询语句分类" class="headerlink" title="一、数据库查询语句分类"></a>一、数据库查询语句分类</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">解释</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DDL（数据<strong>定义</strong>语言），Define</td>
+<td align="center">定义和管理数据对象，如数据库，数据表等</td>
+<td>CREATE、DROP、ALTER</td>
+</tr>
+<tr>
+<td align="center">DML（数据<strong>操作</strong>语言），Manager</td>
+<td align="center">用于操作数据库对象中所包含的数据</td>
+<td>INSERT、UPDATE、DELETE</td>
+</tr>
+<tr>
+<td align="center">DQL（数据<strong>查询</strong>语言），Query</td>
+<td align="center">用于查询数据库数据</td>
+<td>SELECT</td>
+</tr>
+<tr>
+<td align="center">DCL（数据<strong>控制</strong>语言），Control</td>
+<td align="center">用于管理数据库的语言，包括管理权限及数据更改</td>
+<td>GRANT、commit、rollback</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、基本的命令行操作"><a href="#二、基本的命令行操作" class="headerlink" title="二、基本的命令行操作"></a>二、基本的命令行操作</h2><p>命令行连接</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql -uroot -p123456        --连接数据库
+
+update mysql.user set authentication_string=password('123456') where user='root' and Host = 'localhost';         --修改用户密码
+
+flush privileges;            --刷新权限
+
+-------------------------------------------------------
+-- 所有语句都要用分号结尾
+
+show databases;                --查看所有的数据库
+
+use school;                    --使用/切换到名为school的数据库
+
+show tables;                --查看当前使用的数据库中所有的表
+
+describe student;            --显示数据库中所有表的信息
+
+create database abc01;        --创建一个名为abc01的数据库
+
+exit;                        --退出连接</code></pre>
+<hr>
+<h2 id="三、创建数据库"><a href="#三、创建数据库" class="headerlink" title="三、创建数据库"></a>三、创建数据库</h2><p>DDL的一种</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> <span class="token punctuation">[</span><span class="token keyword">if</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">]</span> <span class="token punctuation">`</span>表名<span class="token punctuation">`</span><span class="token punctuation">(</span>
+   <span class="token string">'字段名1'</span> 列类型 <span class="token punctuation">[</span>属性<span class="token punctuation">]</span><span class="token punctuation">[</span>索引<span class="token punctuation">]</span><span class="token punctuation">[</span>注释<span class="token punctuation">]</span><span class="token punctuation">,</span>
+   <span class="token string">'字段名2'</span> 列类型 <span class="token punctuation">[</span>属性<span class="token punctuation">]</span><span class="token punctuation">[</span>索引<span class="token punctuation">]</span><span class="token punctuation">[</span>注释<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true">#...</span>
+   <span class="token string">'字段名n'</span> 列类型 <span class="token punctuation">[</span>属性<span class="token punctuation">]</span><span class="token punctuation">[</span>索引<span class="token punctuation">]</span><span class="token punctuation">[</span>注释<span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">[</span>表类型<span class="token punctuation">]</span><span class="token punctuation">[</span>表字符集<span class="token punctuation">]</span><span class="token punctuation">[</span>注释<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p><strong>说明 :</strong> 反引号用于区别MySQL保留字与普通字符而引入的 (键盘esc下面的键).</p>
+<h2 id="四、操作数据库"><a href="#四、操作数据库" class="headerlink" title="四、操作数据库"></a>四、操作数据库</h2><p>操作数据库 -&gt; 操作数据库中的表 -&gt; 操作数据库中表的数据</p>
+<h3 id="1、sql中的数据值"><a href="#1、sql中的数据值" class="headerlink" title="1、sql中的数据值"></a>1、sql中的数据值</h3><p>列类型 : 规定数据库中该列存放的数据类型</p>
+<blockquote>
+<p>数据类型</p>
+</blockquote>
+<p><img src="/2020/04/28/MySql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%8701_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/%E6%95%B0%E5%80%BC.png" alt loading="lazy"></p>
+<blockquote>
+<p>字符串</p>
+</blockquote>
+<p><img src="/2020/04/28/MySql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%8701_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/%E5%AD%97%E7%AC%A6%E4%B8%B2.png" alt loading="lazy"></p>
+<blockquote>
+<p>日期和时间型数值类型</p>
+</blockquote>
+<p><img src="/2020/04/28/MySql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%8701_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4.png" alt loading="lazy"></p>
+<blockquote>
+<p>NULL值</p>
+</blockquote>
+<ul>
+<li>理解为 “没有值” 或 “未知值”</li>
+<li><strong>不要用NULL进行算术运算 , 结果仍为NULL</strong></li>
+</ul>
+<h3 id="2、数据字段属性"><a href="#2、数据字段属性" class="headerlink" title="2、数据字段属性"></a>2、数据字段属性</h3><p><strong>UnSigned</strong></p>
+<ul>
+<li>无符号的</li>
+<li>声明该数据列不允许负数 .</li>
+</ul>
+<p><strong>ZEROFILL</strong></p>
+<ul>
+<li>0填充的</li>
+<li>不足位数的用0来填充 , 如int(3),5则为005</li>
+</ul>
+<p><strong>Auto_InCrement</strong></p>
+<ul>
+<li><p>自动增长的 , 每添加一条数据 , 自动在上一个记录数上加 1(默认)</p>
+</li>
+<li><p>通常用于设置<strong>主键</strong> , 且为整数类型</p>
+</li>
+<li><p>可定义起始值和步长</p>
+</li>
+<li><ul>
+<li>当前表设置步长(AUTO_INCREMENT=100) : 只影响当前表</li>
+<li>SET @@auto_increment_increment=5 ; 影响所有使用自增的表(全局)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NULL 和 NOT NULL</strong></p>
+<ul>
+<li>默认为NULL , 即没有插入该列的数值</li>
+<li>如果设置为NOT NULL , 则该列必须有值</li>
+</ul>
+<p><strong>DEFAULT</strong></p>
+<ul>
+<li>默认的</li>
+<li>用于设置默认值</li>
+<li>例如,性别字段,默认为”男” , 否则为 “女” ; 若无指定该列的值 , 则默认值为”男”的值</li>
+</ul>
+<p>反向得出操作的sql源码</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 查看数据库的定义</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> school<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- 查看数据表的定义</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> student<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- 显示表结构</span>
+<span class="token keyword">DESC</span> student<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">-- 设置严格检查模式(不能容错了)SET sql_mode='STRICT_TRANS_TABLES';</span></code></pre>
+<h3 id="五、数据表的类型"><a href="#五、数据表的类型" class="headerlink" title="五、数据表的类型"></a>五、数据表的类型</h3></div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>lorz5</li><li class="post-copyright-link"><strong>Post link: </strong><a href="https://lorz5.github.io/2020/04/28/MySql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%8701_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/" title="MySql学习之基础篇01">https://lorz5.github.io/2020/04/28/MySql%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%8701_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%93%8D%E4%BD%9C/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> unless stating additionally.</li></ul></section></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/04/18/C++%E4%B9%8B%E5%8F%8B%E5%85%83/" rel="next" title="c++之友元"><span class="post-nav-text">c++之友元</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+MySql学习之基础篇01" target="_blank" rel="noopener">GitHub Issues</a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> lorz5</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v4.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.3.1</span></div><div id="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-user-line"></use></svg></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg></span><span id="busuanzi_value_site_pv"></span></span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body></html>

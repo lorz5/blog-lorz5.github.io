@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="c++之const修饰符"><meta name="keywords" content="c++"><meta name="author" content="lorz5"><meta name="copyright" content="lorz5"><meta name="theme-color" content="#585858"><title>c++之const修饰符 | lorz5の小さい家</title><link rel="shortcut icon" href="/yun-favicon.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    let Yun = window.Yun || {};
+    let CONFIG = {"root":"/","title":"お帰りなさい","version":"0.3.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><script src="//at.alicdn.com/t/font_1140697_pa6cswvjpq.js" async></script><meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc sidebar-nav-active hty-icon-button" data-target="post-toc-wrap" title="Table of Contents"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="Overview"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="lorz5"><img loading="lazy" src="/images/avatar03.png" alt="lorz5"></a><div class="site-author-name"><a href="/about">lorz5</a></div><a class="site-name" href="/about/site.html">lorz5の小さい家</a><sub class="site-subtitle">Personal Website</sub><div class="site-desciption">ー頑張ろうねー</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="Home"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="Archives"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">12</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="Tags"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">9</span></a></div><a class="site-state-item hty-icon-button" href="https://github.com/YunYouJun/yunyoujun.github.io/issues/96" target="_blank" rel="noopener" title="reward.comment"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:1019438677@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/13772988" title="哔哩哔哩动画" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/m/user/home?id=105243680" title="网易云音乐" target="_blank" style="color:#C10D0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/lorz5" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div></div><script defer src="/js/sidebar.js"></script><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-progress"><div class="progress-bar"></div><div class="progress-info"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span></div></div><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-之const修饰符"><span class="toc-number">1.</span> <span class="toc-text">C++之const修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、基本概念和知识点"><span class="toc-number">1.1.</span> <span class="toc-text">一、基本概念和知识点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、const的基本使用"><span class="toc-number">1.2.</span> <span class="toc-text">二、const的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、定义常量"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、定义对象"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、定义对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#补充：常成员函数"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">补充：常成员函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、定义对象中的成员"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、定义对象中的成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、指向对象的常指针"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、指向对象的常指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、函数中使用const"><span class="toc-number">1.2.5.</span> <span class="toc-text">5、函数中使用const</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://lorz5.github.io/2020/04/14/C++%E4%B9%8Bconst%E4%BF%AE%E9%A5%B0%E7%AC%A6/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="lorz5"><meta itemprop="description" content="c++之const修饰符"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="lorz5の小さい家"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">c++之const修饰符</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="Created: 2020-04-14 22:13:37" itemprop="dateCreated datePublished" datetime="2020-04-14T22:13:37+08:00">2020-04-14</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="Modified: 2020-04-15 00:28:53" itemprop="dateModified" datetime="2020-04-15T00:28:53+08:00">2020-04-15</time></span><div class="post-classify"><span class="post-tag"></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><h1 id="C-之const修饰符"><a href="#C-之const修饰符" class="headerlink" title="C++之const修饰符"></a>C++之const修饰符</h1><blockquote>
+<p><a href="https://blog.csdn.net/eric_jo/article/details/4138548" target="_blank" rel="noopener">关于C++ const的全面总结</a></p>
+</blockquote>
+<h2 id="一、基本概念和知识点"><a href="#一、基本概念和知识点" class="headerlink" title="一、基本概念和知识点"></a>一、基本概念和知识点</h2><ul>
+<li><p>在C语言中，我们通常使用<code>#define</code>去进行预定义的某个数（不为其分配内存），在编译预处理过程中就会用定义好的常量字面数据去替换文中的某个符号。</p>
+<p>与C语言不同的是，C++中通常使用const修饰符去代替C语言中的#define，<strong>一般情况</strong>下编译器也是不为const创建空间的，只是将这个定义的数字保存在符号表中。</p>
+<p>C++会对const进行优化，以尽量避免为其分配内存。</p>
+</li>
+<li><p>被const修饰的类型称为常类型，常类型的变量或对象的值是不能被更新的。</p>
+</li>
+</ul>
+<h2 id="二、const的基本使用"><a href="#二、const的基本使用" class="headerlink" title="二、const的基本使用"></a>二、const的基本使用</h2><h3 id="1、定义常量"><a href="#1、定义常量" class="headerlink" title="1、定义常量"></a>1、定义常量</h3><p><code>内部</code>：const修饰变量，以下两种定义形式在本质上是一样的。它的含义是：const修饰的类型为TYPE的变量value是不可变的。</p>
+<pre class=" language-c++"><code class="language-c++"># include <iostream>
+using namespace std;
+
+int main() {
+    const int a = 1;    // 必须在定义的同时进行初始化
+    int const b = 2 + 1;    // 两种声明方式均可，效果相同
+
+    // a = 1;  error <- 初始化后不能再进行修改
+
+    return 0;
+}</code></pre>
+<p><code>外部</code>：将const改为外部连接,作用于扩大至全局，编译时会分配内存，并且可以不进行初始化，仅仅作为声明，编译器认为在程序其他地方进行了定义。</p>
+<pre class=" language-c++"><code class="language-c++"># include <iostream>
+using namespace std;
+
+extern const int link;        // 声明外部链接
+
+int main() {
+
+    return 0;
+}</code></pre>
+<hr>
+<h3 id="2、定义对象"><a href="#2、定义对象" class="headerlink" title="2、定义对象"></a>2、定义对象</h3><ul>
+<li>当对象被定义为常对象时，对象中的数据成员都为常变量，程序中不允许修改常对象的数据成员值</li>
+<li>常对象的成员函数必须要被const修饰后才能被对象调用（构造析构函数除外）</li>
+<li>定义常函数的语法：<code>void method() const</code>，<strong><em>const放在参数表后面</em></strong></li>
+</ul>
+<pre class=" language-c++"><code class="language-c++"># include <iostream>
+# include <string>
+using namespace std;
+
+class A {
+public:
+    int getNum() {        // 问题：这里为什么编译的时候不会报错呢，，，提示——const可以构成重载
+        return num;
+    }
+
+    string getStr() const{
+        return str;
+    }
+
+    void setNum(int a) {
+        num = a;    // error
+    }
+
+    void setStr(string ch) const{
+        str = ch;    // true
+    }
+
+private:
+    int num;
+    mutable string str = "abc";            // 修饰符 mutable，将这个数据成员变成可变的，可以通过常成员函数修改它的值
+};
+
+int main() {
+    const A aa;
+
+    // cout << aa.getStr() << endl;        // error，因为成员函数没有被定义为常成员函数
+    cout << aa.getStr() << endl;        // true，输出：abc
+
+    // aa.setNum(2);                    // error，因为当对象被const修饰时，里面的所有数据成员都为常类型，不可修改
+    aa.setStr("123");
+    cout << aa.getStr();                // true，输出：123
+
+    return 0;
+}</code></pre>
+<h4 id="补充：常成员函数"><a href="#补充：常成员函数" class="headerlink" title="补充：常成员函数"></a>补充：常成员函数</h4><ul>
+<li>常成员函数不能修改对象的数据成员（除非使用修饰符 <code>mutable</code>），也不能调用该类中没有被<code>const</code>修饰的成员函数。</li>
+<li>当一个对象被修饰为const时，则只能调用它的常成员函数。</li>
+<li>一般成员函数可以<strong>访问或修改</strong>本类中的非 const数据成员。而常成员函数<strong>只能读</strong>本类中的数据成员，而不能写它们</li>
+</ul>
+<hr>
+<h3 id="3、定义对象中的成员"><a href="#3、定义对象中的成员" class="headerlink" title="3、定义对象中的成员"></a>3、定义对象中的成员</h3><ul>
+<li>c++中可以将普通类中的成员（包含数据成员和成员函数）声明为常量，但是<strong>只能通过带参数初始表的</strong>构造函数对常数据成员进行初始化</li>
+</ul>
+<pre class=" language-c++"><code class="language-c++"># include <iostream>
+using namespace std;
+
+class A {
+public:
+    A(int a):num(a) {
+        // num = a;    // error
+    }
+
+    int getNum() const{
+        return num;
+    }
+
+private:
+    const int num;
+};
+
+int main() {
+    A * aa = new A(2);        // 注意，当在堆中分配空间时，const也被强迫分配空间
+
+    cout << aa->getNum() << endl;
+
+    return 0;
+}</code></pre>
+<hr>
+<h3 id="4、指向对象的常指针"><a href="#4、指向对象的常指针" class="headerlink" title="4、指向对象的常指针"></a>4、指向对象的常指针</h3><p>在定义一个指针的时候加上修饰符const，那么这个指针就是一个常指针，<strong>必须在定义时进行初始化</strong></p>
+<pre class=" language-c++"><code class="language-c++"># include <iostream>
+using namespace std;
+
+class A {
+public:
+    int num;
+};
+
+int main() {
+    A * const aa = new A();
+    A * bb = new A();
+
+    // aa = bb;        //error，指针为常量，不可变
+
+    return 0;
+}</code></pre>
+<blockquote>
+<p> 特别需要注意区分是：</p>
+<p>(1)指针本身是常量不可变<br>     char* const pContent;</p>
+<p>(2)指针所指向的内容是常量不可变<br>     const char *pContent;</p>
+<p>​     char const *pContent;</p>
+<p>(3)两者都不可变<br>      const char* const pContent;</p>
+<p>(4)还有其中区别方法，沿着<code>*</code>号划一条线：<br>如果const位于<code>*</code>的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；<br>如果const位于<code>*</code>的右侧，const就是修饰指针本身，即指针本身是常量。</p>
+</blockquote>
+<h3 id="5、函数中使用const"><a href="#5、函数中使用const" class="headerlink" title="5、函数中使用const"></a>5、函数中使用const</h3><p>①传递过来的参数在函数内不可以改变(无意义，因为Var本身就是形参)</p>
+<pre class=" language-c++"><code class="language-c++">void function(const int Var); </code></pre>
+<p>②参数指针所指内容为常量不可变</p>
+<pre class=" language-c++"><code class="language-c++">void function(const char* Var); </code></pre>
+<p>③参数指针本身为常量不可变(也无意义，因为char* Var也是形参)</p>
+<pre class=" language-c++"><code class="language-c++">void function(char* const Var); </code></pre>
+<p>④参数为引用，为了增加效率同时防止修改。修饰引用参数时：</p>
+<pre class=" language-c++"><code class="language-c++">void function(const Class& Var);     //引用参数在函数内不可以改变
+
+void function(const TYPE& Var);      //引用参数在函数内为常量不可变</code></pre>
+<ul>
+<li><p>这样的一个const引用传递和最普通的函数按值传递的效果是一模一样的，他禁止对引用的对象的一切修改。</p>
+<p>唯一不同的是按值传递会先建立一个类对象的副本,，然后传递过去，而它直接传递地址，所以这种传递比按值传递更有效。</p>
+<p>另外只有引用的const传递可以传递一个临时对象，因为临时对象都是const属性，且是不可见的，他短时间存在一个局部域中，所以不能使用指针，只有引用的const传递能够捕捉到这个家伙。</p>
+</li>
+</ul>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>lorz5</li><li class="post-copyright-link"><strong>Post link: </strong><a href="https://lorz5.github.io/2020/04/14/C++%E4%B9%8Bconst%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="c++之const修饰符">https://lorz5.github.io/2020/04/14/C++%E4%B9%8Bconst%E4%BF%AE%E9%A5%B0%E7%AC%A6/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> unless stating additionally.</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/04/18/C++%E4%B9%8B%E5%8F%8B%E5%85%83/" rel="prev" title="c++之友元"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">c++之友元</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/04/09/C++%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88/" rel="next" title="C++的对象指针"><span class="post-nav-text">C++的对象指针</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/YunYouJun/yunyoujun.github.io/issues?q=is:issue+c++之const修饰符" target="_blank" rel="noopener">GitHub Issues</a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> lorz5</span></div><div class="powered"><span>Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v4.2.0</span><span class="footer-separator">|</span><span>Theme - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.3.1</span></div><div id="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-user-line"></use></svg></span><span id="busuanzi_value_site_uv"></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg></span><span id="busuanzi_value_site_pv"></span></span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body></html>
