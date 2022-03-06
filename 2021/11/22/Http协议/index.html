@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Http协议 | lorz5の小屋</title>
+  <meta name="author" content="lorz5" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="协议, 计算机网络" />
+  
+  <meta name="description" content="从Http到Https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http协议">
+<meta property="og:url" content="http://example.com/2021/11/22/Http%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="lorz5の小屋">
+<meta property="og:description" content="从Http到Https">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/favicon.ico">
+<meta property="article:published_time" content="2021-11-22T01:21:00.000Z">
+<meta property="article:modified_time" content="2022-01-16T12:39:31.077Z">
+<meta property="article:author" content="lorz5">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="协议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/favicon.ico">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/myImages/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">作者博客</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">项目链接</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">lorz5の小屋</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>lorz5の小屋</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">Http协议</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2021-11-22</li>
+                <li><i class="fa fa-user"></i> 作者 lorz5</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~2.87K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1642336771077"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9C%A8TCP-IP%E5%8D%8F%E8%AE%AE%E6%A0%88%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">一、在TCP&#x2F;IP协议栈中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">二、定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">三、工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">3.1.</span> <span class="toc-text">三次握手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">四、报文结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="toc-number">4.1.</span> <span class="toc-text">（1）请求报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-number">4.2.</span> <span class="toc-text">（2）响应报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E9%80%9A%E7%94%A8%E5%AD%97%E6%AE%B5%EF%BC%88%E9%80%9A%E7%94%A8%E5%A4%B4%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">（3）通用字段（通用头）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Http%E4%B8%8EHttps"><span class="toc-number">5.</span> <span class="toc-text">五、Http与Https</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%AE%9A%E4%B9%89"><span class="toc-number">5.1.</span> <span class="toc-text">（1）定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%8C%BA%E5%88%AB"><span class="toc-number">5.2.</span> <span class="toc-text">（2）区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Https%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">5.3.</span> <span class="toc-text">（3）Https的工作原理</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <meta name="referrer" content="no-referrer"/>
+
+<blockquote>
+<p>从Http到Https<span id="more"></span></p>
+</blockquote>
+<div class="panel panel-info">
+    <div class="panel-title">前情提要</div>
+    <div class="panel-body">
+        <p>万维网：是一个大规模、联机式的信息储藏/资料空间，是无数个网络站点和网页的集合。</p>
+<ul>
+<li><p>定位方式：统一资源定位符URL——唯一标识——&gt;资源（文字、视频、音频）</p>
+</li>
+<li><p><strong>URL不区分大小写</strong></p>
+<img src="/2021/11/22/Http%E5%8D%8F%E8%AE%AE/URL%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F.png" class="" title="这是一张图片"></li>
+</ul>
+
+    </div>
+    </div>
+
+
+
+<h2 id="一、在TCP-IP协议栈中的位置"><a href="#一、在TCP-IP协议栈中的位置" class="headerlink" title="一、在TCP/IP协议栈中的位置"></a>一、在TCP/IP协议栈中的位置</h2><p>HTTP协议通常承载于TCP协议之上，有时也承载于TLS或SSL协议层之上，这个时候，就成了我们常说的HTTPS。如下图所示：</p>
+<p><img src="http://images.blogjava.net/blogjava_net/amigoxie/40799/o_http%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0-11.jpg"></p>
+<p><strong>默认HTTP的端口号为80，HTTPS的端口号为443。</strong></p>
+<h2 id="二、定义"><a href="#二、定义" class="headerlink" title="二、定义"></a>二、定义</h2><p>HTTP是Hyper Text Transfer Protocol（超文本传输协议）的缩写。</p>
+<p>是用于从WWW服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。</p>
+<ul>
+<li>HTTP是一个<strong>应用层协议</strong>，由<strong>请求和响应</strong>构成</li>
+<li>HTTP是一个标准的<strong>客户端服务器C/S</strong>模型。</li>
+<li>HTTP是一个<strong>无状态</strong>的协议。</li>
+</ul>
+<h2 id="三、工作流程"><a href="#三、工作流程" class="headerlink" title="三、工作流程"></a>三、工作流程</h2><p>一次HTTP操作称为一个事务，其工作过程可分为四步：</p>
+<p><strong>1）首先客户机与服务器需要建立连接。只要单击某个超级链接或者输入某个网址，HTTP的工作开始。</strong></p>
+<p><strong>2）建立连接后，客户机发送一个请求给服务器，请求方式的格式为：统一资源标识符（URL）、协议版本号，后边是MIME信息包括请求修饰符、客户机信息和可能的内容。</strong></p>
+<p><strong>3）服务器接到请求后，给予相应的响应信息，其格式为一个状态行，包括信息的协议版本号、一个成功或错误的代码，后边是MIME信息包括服务器信息、实体信息和可能的内容。</strong></p>
+<p><strong>4）客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接。</strong></p>
+<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p><img src="https://s3.51cto.com/oss/201906/17/7b09f56589ba71b99fad5aeae19f363d.jpeg"></p>
+<ul>
+<li>第一次握手：客户端将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给服务器端，客户端进入SYN_SENT状态，等待服务器端确认。</li>
+<li>第二次握手：服务器端收到数据包后由标志位SYN=1知道客户端请求建立连接，服务器端将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给客户端以确认连接请求，服务器端进入SYN_RCVD状态。</li>
+<li>第三次握手：客户端收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给服务器端，服务器端检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，客户端和服务器端进入ESTABLISHED状态，完成三次握手，随后客户端与服务器端之间可以开始传输数据了。</li>
+</ul>
+<h2 id="四、报文结构"><a href="#四、报文结构" class="headerlink" title="四、报文结构"></a>四、报文结构</h2><p>HTTP报文分为请求报文和响应报文</p>
+<h3 id="（1）请求报文"><a href="#（1）请求报文" class="headerlink" title="（1）请求报文"></a>（1）请求报文</h3><img src="/2021/11/22/Http%E5%8D%8F%E8%AE%AE/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87_0.png" class="" title="这是一张图片">
+
+<p>例如，访问百度，请求头如下：</p>
+<img src="/2021/11/22/Http%E5%8D%8F%E8%AE%AE/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87_1.png" class="" title="这是一张图片">
+
+<p>其中，Connection表示连接方式为：keep-alive<code>持久连接</code></p>
+<h3 id="（2）响应报文"><a href="#（2）响应报文" class="headerlink" title="（2）响应报文"></a>（2）响应报文</h3><img src="/2021/11/22/Http%E5%8D%8F%E8%AE%AE/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87_0.png" class="" title="这是一张图片">
+
+<p>例如，访问百度，响应头如下：</p>
+<img src="/2021/11/22/Http%E5%8D%8F%E8%AE%AE/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87_1.png" class="" title="这是一张图片">
+
+<h3 id="（3）通用字段（通用头）"><a href="#（3）通用字段（通用头）" class="headerlink" title="（3）通用字段（通用头）"></a>（3）通用字段（通用头）</h3><p>通用头域包含请求和响应消息都支持的头域，通用头域包含Cache-Control、  Connection、Date、Pragma、Transfer-Encoding、Upgrade、Via。对通用头域的扩展要求通讯双方都支持此扩展，如果存在不支持的通用头域，一般将会作为实体头域处理。下面简单介绍几个在UPnP消息中使用的通用头域。</p>
+<p><strong>Cache-Control</strong>：指定请求和响应遵循的缓存机制</p>
+<ul>
+<li>Public：指示响应可被任何缓存区缓存； </li>
+<li>Private：指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效； </li>
+<li>cache：指示请求或响应消息不能缓存； </li>
+<li>no-store：用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存； </li>
+<li>max-age：指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应； </li>
+<li>max-fresh：指示客户机可以接收响应时间小于当前时间加上指定时间的响应； </li>
+<li>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</li>
+</ul>
+<p><strong>Date</strong>：表示消息发送的时间，时间的描述格式由rfc822定义</p>
+<ul>
+<li>RFC 822是电子邮件的标准格式</li>
+<li>例如，Date：Thu, 28 Oct 2021 06:18:41 GMT</li>
+<li>描述的时间表示世界标准时，换算成本地时间，需要知道用户所在的时区。</li>
+</ul>
+<p><strong>Pragma</strong>：用来包含实现特定的指令</p>
+<ul>
+<li>最常用的是Pragma:no-cache。在HTTP/1.1协议中，它的含义和Cache- Control:no-cache相同。</li>
+</ul>
+<p><strong>Connection</strong>：表示连接状态</p>
+<ul>
+<li>close：<ul>
+<li>对于请求：告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了。 </li>
+<li>对于响应：连接已经关闭。</li>
+</ul>
+</li>
+<li>keepalive：<ul>
+<li>对于请求：告诉WEB服务器或者代理服务器，在完成本次请求的响应后，保持连接，等待本次连接的后续请求。</li>
+<li>对于响应：连接保持着，在等待本次连接的后续请求</li>
+</ul>
+</li>
+</ul>
+<h2 id="五、Http与Https"><a href="#五、Http与Https" class="headerlink" title="五、Http与Https"></a>五、Http与Https</h2><h3 id="（1）定义"><a href="#（1）定义" class="headerlink" title="（1）定义"></a>（1）定义</h3><p>Http<strong>s</strong>是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p>
+<p>HTTPS协议的主要作用可以分为两种：</p>
+<ul>
+<li>建立一个信息安全通道，来保证数据传输的安全；</li>
+<li>确认网站的真实性。</li>
+</ul>
+<h3 id="（2）区别"><a href="#（2）区别" class="headerlink" title="（2）区别"></a>（2）区别</h3><p>1、https协议需要到CA申请证书，一般免费证书较少，因而需要一定费用。</p>
+<p>2、http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。</p>
+<p>3、http和https使用的是完全不同的连接方式，用的端口也不一样，http是80，https是443。</p>
+<p>4、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。</p>
+<ul>
+<li>无状态：服务器不会在服务器端存储有关客户端会话的任何状态</li>
+</ul>
+<h3 id="（3）Https的工作原理"><a href="#（3）Https的工作原理" class="headerlink" title="（3）Https的工作原理"></a>（3）Https的工作原理</h3><p><img src="https://www.mahaixiang.cn/uploads/allimg/1507/1-150H120343I41.jpg"></p>
+<p>客户端在使用HTTPS方式与Web服务器通信时有以下几个步骤，如图所示。</p>
+<p>　　（1）客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</p>
+<p>　　（2）Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</p>
+<p>　　（3）客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</p>
+<p>　　（4）客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</p>
+<p>　　（5）Web服务器利用自己的私钥解密出会话密钥。</p>
+<p>　　（6）Web服务器利用会话密钥加密与客户端之间的通信。</p>
+<p><img src="https://pic002.cnblogs.com/images/2012/339704/2012071410212142.gif"></p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://example.com/2021/11/22/Http%E5%8D%8F%E8%AE%AE/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://example.com/2021/11/22/Http%E5%8D%8F%E8%AE%AE/";
+            const title         = "「Http协议」";
+            const excerpt       = `从Http到Https`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E5%8D%8F%E8%AE%AE/" rel="tag">协议</a>, <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-01-16</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" C#中的json" href="/2021/11/18/C sharp中的json/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 存储过程" href="/2021/12/14/存储过程/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/myImages/avatar03.png" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9C%A8TCP-IP%E5%8D%8F%E8%AE%AE%E6%A0%88%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">一、在TCP&#x2F;IP协议栈中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-text">二、定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">三、工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-text">三次握手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-text">四、报文结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="toc-text">（1）请求报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-text">（2）响应报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E9%80%9A%E7%94%A8%E5%AD%97%E6%AE%B5%EF%BC%88%E9%80%9A%E7%94%A8%E5%A4%B4%EF%BC%89"><span class="toc-text">（3）通用字段（通用头）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Http%E4%B8%8EHttps"><span class="toc-text">五、Http与Https</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%AE%9A%E4%B9%89"><span class="toc-text">（1）定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%8C%BA%E5%88%AB"><span class="toc-text">（2）区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Https%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">（3）Https的工作原理</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA/">个人</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">6</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/C/" style="font-size: 0.73em;">C#</a> <a href="/tags/sql-server/" style="font-size: 0.67em;">sql server</a> <a href="/tags/%E4%BA%8C%E6%AC%A1%E5%85%83/" style="font-size: 0.6em;">二次元</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 0.67em;">协议</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 0.67em;">工具</a> <a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 0.6em;">框架</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 0.6em;">正则表达式</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 0.6em;">爬虫</a> <a href="/tags/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 0.6em;">生活记录</a> <a href="/tags/%E7%A7%81%E4%BA%BA/" style="font-size: 0.6em;">私人</a> <a href="/tags/%E7%BD%91%E7%AB%99%E8%AE%B0%E5%BD%95/" style="font-size: 0.8em;">网站记录</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 0.67em;">计算机网络</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/06/%E6%BC%AB%E7%94%BB%E8%AE%B0%E5%BD%95/"><i class="fa  fa-book"></i> 漫画记录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/23/%E7%88%AC%E8%99%AB%E8%AE%B0%E5%BD%95%E4%B9%8B%E9%9B%B7%E9%80%9F%E7%BD%91%E7%AF%AE%E7%90%83%E6%AF%94%E5%88%86%E6%8A%93%E5%8F%96/"><i class="fa  fa-book"></i> 爬虫记录之雷速网篮球比分抓取</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/04/%E4%BC%98%E7%A7%80%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95/"><i class="fa  fa-book"></i> 优秀博客记录</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/04/%E5%AD%A6%E6%A0%A1%E8%B5%84%E6%BA%90%E8%AE%B0%E5%BD%95%EF%BC%88%E5%8C%85%E5%90%AB%E6%AF%95%E8%AE%BE%EF%BC%89/"><i class="fa  fa-book"></i> 学校资源记录（包含毕设）</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/17/%E5%9F%BA%E4%BA%8ECSharp%E7%9A%84%E7%88%AC%E8%99%AB%E6%A8%A1%E6%9D%BF/"><i class="fa  fa-book"></i> 基于C#的爬虫模板</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 lorz5の小屋 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by lorz5.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="https://unpkg.com/meting@2/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
