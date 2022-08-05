@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/favicon.ico">
 <meta property="article:published_time" content="2021-11-17T06:09:56.000Z">
-<meta property="article:modified_time" content="2022-01-16T13:36:15.603Z">
+<meta property="article:modified_time" content="2022-08-05T17:47:33.882Z">
 <meta property="article:author" content="lorz5">
 <meta property="article:tag" content="sql server">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~8.63K
+                        ~8.66K
                     
                     字
                 </li>
@@ -182,7 +182,7 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1642340175603"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1659721653882"></time> 前，其中的内容可能需要更新。
             </div>
             
                 <div class="kratos-post-inner-toc">
@@ -193,7 +193,7 @@
             <blockquote>
 <p>基于Sql Server的语法<span id="more"></span></p>
 </blockquote>
-<h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database db1 </span><br><span class="line"><span class="keyword">on</span> <span class="keyword">primary</span> (</span><br><span class="line">	name <span class="operator">=</span> <span class="string">&#x27;MySchool_data&#x27;</span>,</span><br><span class="line">	filename <span class="operator">=</span> <span class="string">&#x27;C:\database\MySchool_data.mdf&#x27;</span>,		<span class="operator">/</span><span class="operator">/</span> 文件存放位置</span><br><span class="line">	size <span class="operator">=</span> <span class="number">5</span>MB,</span><br><span class="line">	maxsize <span class="operator">=</span> <span class="number">100</span>MB,</span><br><span class="line">	filegrowth <span class="operator">=</span> <span class="number">15</span><span class="operator">%</span></span><br><span class="line">) log <span class="keyword">on</span> (			<span class="operator">/</span><span class="operator">/</span> 日志文件，基本结构和上面一样，不设置maxsize，无限大</span><br><span class="line">	name <span class="operator">=</span> <span class="string">&#x27;MySchool_log&#x27;</span>,</span><br><span class="line">	filename <span class="operator">=</span> <span class="string">&#x27;C:\database\MySchool_log.ldf&#x27;</span>,		<span class="operator">/</span><span class="operator">/</span> 文件存放位置</span><br><span class="line">	size <span class="operator">=</span> <span class="number">2</span>mb,</span><br><span class="line">	filegrowth <span class="operator">=</span> <span class="number">1</span>mb</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database newbet007</span><br><span class="line"><span class="keyword">on</span> <span class="keyword">primary</span> (</span><br><span class="line">	name <span class="operator">=</span> <span class="string">&#x27;newbet007_data&#x27;</span>,</span><br><span class="line">	filename <span class="operator">=</span> <span class="string">&#x27;E:\华盈\Database\newbet007\newbet007_data.mdf&#x27;</span>,		<span class="comment">--文件存放位置</span></span><br><span class="line">	size <span class="operator">=</span> <span class="number">5</span>MB,</span><br><span class="line">	maxsize <span class="operator">=</span> <span class="number">100</span>MB,</span><br><span class="line">	filegrowth <span class="operator">=</span> <span class="number">15</span><span class="operator">%</span></span><br><span class="line">) log <span class="keyword">on</span> (			<span class="comment">-- 日志文件，基本结构和上面一样，不设置maxsize，无限大</span></span><br><span class="line">	name <span class="operator">=</span> <span class="string">&#x27;newbet007_log&#x27;</span>,</span><br><span class="line">	filename <span class="operator">=</span> <span class="string">&#x27;E:\华盈\Database\newbet007\newbet007_log.ldf&#x27;</span>,		<span class="comment">-- 文件存放位置</span></span><br><span class="line">	size <span class="operator">=</span> <span class="number">2</span>mb,</span><br><span class="line">	filegrowth <span class="operator">=</span> <span class="number">1</span>mb</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
 
 
@@ -202,7 +202,7 @@
 
 
 
-<h3 id="（1）数据查询"><a href="#（1）数据查询" class="headerlink" title="（1）数据查询"></a>（1）数据查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student;		<span class="operator">/</span><span class="operator">/</span> 查询所有数据，从student表中</span><br></pre></td></tr></table></figure>
+<h3 id="（1）数据查询"><a href="#（1）数据查询" class="headerlink" title="（1）数据查询"></a>（1）数据查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student;		<span class="comment">-- 查询所有数据，从student表中</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="（2）数据添加"><a href="#（2）数据添加" class="headerlink" title="（2）数据添加"></a>（2）数据添加</h3><p>方法一</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(id, name, age) <span class="keyword">values</span>(<span class="number">1</span>, <span class="string">&#x27;张三&#x27;</span>, <span class="number">18</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(name, id, age) <span class="keyword">values</span>(<span class="string">&#x27;李四&#x27;</span>, <span class="number">2</span>, <span class="number">12</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(id, name, age) <span class="keyword">values</span>(<span class="number">3</span>, <span class="string">&#x27;王五&#x27;</span>, <span class="number">36</span>);</span><br><span class="line"><span class="keyword">insert</span> student(id, name, age) <span class="keyword">values</span>(<span class="number">4</span>, <span class="string">&#x27;王五&#x27;</span>, <span class="number">36</span>);</span><br><span class="line"><span class="keyword">insert</span> student <span class="keyword">values</span>(<span class="number">5</span>, <span class="string">&#x27;陆六&#x27;</span>, <span class="number">24</span>);</span><br></pre></td></tr></table></figure>
@@ -376,7 +376,7 @@
                     <a class="tag-none-link" href="/tags/sql-server/" rel="tag">sql server</a>
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-01-16</span>
+                <span>最后编辑：2022-08-06</span>
                 </div>
             </div>
         </footer>
